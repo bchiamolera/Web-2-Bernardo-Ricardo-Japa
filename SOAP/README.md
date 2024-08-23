@@ -40,7 +40,7 @@ prints apresentando que seu Web Service está funcionando.
 
 ## Prints:
 
-
+![plot](./Prints/WebServiceSOAP.png)
 ***Web Service SOAP***
 
 <br />
