@@ -37,3 +37,13 @@ prints apresentando que seu Web Service está funcionando.
 **c)** Prints apresentando que o Web Service SOAP funciona
 
 **d)** Print do WSDL gerado
+
+## Prints:
+
+![plot](./Prints/WebServiceSOAP.png)
+***Web Service SOAP***
+
+<br />
+
+![plot](./Prints/WSDLGerado.png)
+***WSDL gerado***
