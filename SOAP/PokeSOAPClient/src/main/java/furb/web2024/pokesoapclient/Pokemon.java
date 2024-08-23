@@ -1,7 +1,6 @@
-package furb.web2024.pokesoap;
+package furb.web2024.pokesoapclient;
 
 public class Pokemon {
-    
     int number;
     String name;
     String type1;
