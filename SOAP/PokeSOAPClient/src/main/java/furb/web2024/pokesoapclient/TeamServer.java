@@ -8,9 +8,9 @@ import javax.jws.soap.SOAPBinding;
 public interface TeamServer {
     public String getTeam();
     
-    public String createTeam(String trainerName, Pokemon[] pokemons);
+    public String createTeam(String trainerName, int[] pokemons);
     
-    public String updateTeam(Pokemon[] pokemons);
+    public String updateTeam(int[] pokemons);
     
     public String deleteTeam();
 }

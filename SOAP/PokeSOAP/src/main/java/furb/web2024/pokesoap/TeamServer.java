@@ -11,9 +11,9 @@ public interface TeamServer {
         
     @WebMethod String getTeam();
     
-    @WebMethod String createTeam(String trainerName, Pokemon[] pokemons);
+    @WebMethod String createTeam(String trainerName, int[] pokemons);
     
-    @WebMethod String updateTeam(Pokemon[] pokemons);
+    @WebMethod String updateTeam(int[] pokemons);
     
     @WebMethod String deleteTeam();
 

@@ -15,15 +15,15 @@ public class TeamServerImpl implements TeamServer {
         return "Nenhum time cadastrado";
     }
 
-    public String updateTeam(Pokemon[] pkmns) {
+    public String updateTeam(int[] pkmns) {
         if (time != null) {
-            time.UpdateTeam(pkmns);
+            time.setTeam(pkmns);
             return "Time atualizado! \n" + time.toString();
         }
         return "Nenhum time cadastrado";
     }
     
-    public String createTeam(String trainerName, Pokemon[] pkmns) {
+    public String createTeam(String trainerName, int[] pkmns) {
         if (time == null) {
             time = new Team(trainerName, pkmns);
             return "Time criado! \n" + time.toString();

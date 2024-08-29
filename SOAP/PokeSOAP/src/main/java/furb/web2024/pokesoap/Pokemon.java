@@ -25,6 +25,6 @@ public class Pokemon {
         if (type2 != null) {
             ret += ". Type2: " + type2 + ".";
         }
-        return name;
+        return ret;
     }
 }

@@ -1,4 +1,8 @@
-package furb.web2024.pokesoapclient;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package furb.web2024.pokesoap;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,8 +11,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ *
+ * @author Bernardo Chiamolera
+ */
 public class CSVReader {
-
     File fileCSV;
     
     public CSVReader(String path) {
