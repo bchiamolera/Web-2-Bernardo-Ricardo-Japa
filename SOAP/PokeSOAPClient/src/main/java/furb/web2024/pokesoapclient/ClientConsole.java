@@ -101,9 +101,8 @@ public class ClientConsole {
         for (int i = 0; i < team.size(); i++) {
             finalTeam[i] = team.get(i).number;
         }
-        
-        String res = serverMethods.createTeam(trainerName, finalTeam);
-        System.out.println(res);
+
+        System.out.println(serverMethods.createTeam(trainerName, finalTeam));
         
         menu();
     }
@@ -153,7 +152,7 @@ public class ClientConsole {
     }
     
     public Pokemon choosePokemon() {
-        System.out.println("Qual pokemon deseja adcionar? Digite o numero correspondente (1 - 151)");
+        System.out.println("\nQual pokemon deseja adcionar? Digite o numero correspondente (1 - 151)");
         int number = readIntValue(1, 151);
         
         return pokemons.get(number);
