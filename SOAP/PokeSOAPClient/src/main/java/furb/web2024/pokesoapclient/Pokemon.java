@@ -17,13 +17,4 @@ public class Pokemon {
             this.type2 = null;
         }
     }
-    
-    @Override
-    public String toString() {
-        String ret = name + ". Tipo 1: " + type1;
-        if (type2 != null) {
-            ret += ". Type2: " + type2 + ".";
-        }
-        return name;
-    }
 }

@@ -5,8 +5,6 @@ import javax.xml.ws.Service;
 import java.net.URL;
 
 public class PokeSOAPClient {
-    // Não esquecer de rodar a API antes de testar o cliente;
-    // ---> UM TIME SÓ PODE CONTER ATÉ 6 POKÉMONS!!! <---
     public static void main(String[] args) throws Exception {
         URL url = new URL("http://127.0.0.1:9876/pokeSOAP?wsdl");
         
