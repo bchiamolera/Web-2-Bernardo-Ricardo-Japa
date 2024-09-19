@@ -2,7 +2,7 @@
 
 ## O que fazer:
 
-**a)** definir um problema: descreva textualmente um problema que você gostaria de
+**a)** Definir um problema: descreva textualmente um problema que você gostaria de
 resolver por meio de um sistema, ou seja, o enunciado de um sistema que você imagina
 desenvolver. Valide este enunciado com a professora.
 
