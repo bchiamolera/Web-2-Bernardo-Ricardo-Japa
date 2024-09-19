@@ -2,3 +2,4 @@
 /SOAP/calc/target/
 /SOAP/PokeSOAP/target/
 /SOAP/PokeSOAPClient/target/
+/REST/ProductsAPI/src/main/resources/application.properties
