@@ -1,8 +1,8 @@
 # Diagramas UML
 
-O que fazer:
+## O que fazer:
 
-**a)** definir um problema: descreva textualmente um problema que você gostaria de
+**a)** Definir um problema: descreva textualmente um problema que você gostaria de
 resolver por meio de um sistema, ou seja, o enunciado de um sistema que você imagina
 desenvolver. Valide este enunciado com a professora.
 
@@ -15,7 +15,7 @@ componentes do diagrama de networking) representando como funciona a arquitetura
 do sistema a nível de implantação (banco de dados, cliente-servidor, navegador,
 bibliotecas, etc)
 
-## Definindo o Problema
+## Definindo o Problema:
 
 Imagine que um restaurante está expandindo seu sistema de delivery. Ele já utilizava uma plataforma geral para realizar os pedidos, mas agora ele quer
 utilizar uma plataforma própria personalizada, assim evitando as taxas de empresas terceiras. Os clientes irão realizar seus pedidos através de um aplicativo
