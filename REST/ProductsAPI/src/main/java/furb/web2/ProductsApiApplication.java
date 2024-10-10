@@ -11,3 +11,7 @@ public class ProductsApiApplication {
 	}
 
 }
+
+
+
+//Podutos: Preço , marca, categoria, nome, id
