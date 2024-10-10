@@ -19,15 +19,16 @@ public class JwtTokenUtil implements Serializable {
 	private static final long serialVersionUID = -2550185165626007488L;
 	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
+	// secret key for decryption
 	@Value("${jwt.secret}")
 	private String secret;
 
-	// retrieve username from jwt token
+	// retrieve username from JWT token
 	public String getUsernameFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
 	}
 
-	// retrieve expiration date from jwt token
+	// retrieve expiration date from JWT token
 	public Date getExpirationDateFromToken(String token) {
 		return getClaimFromToken(token, Claims::getExpiration);
 	}

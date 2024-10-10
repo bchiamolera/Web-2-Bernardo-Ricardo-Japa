@@ -21,15 +21,15 @@ import furb.web2.Config.JwtRequestFilter;
 public class WebSecurityConfig {
 	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	private final JwtRequestFilter jwtRequestFilter;
-	// private final UserDetailsService jwtUserDetailsService;
+	private final UserDetailsService jwtUserDetailsService;
 
 	@Autowired
 	public WebSecurityConfig(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
-							 JwtRequestFilter jwtRequestFilter /*,
-							 UserDetailsService jwtUserDetailsService*/) {
+							 JwtRequestFilter jwtRequestFilter,
+							 UserDetailsService jwtUserDetailsService) {
 		this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
 		this.jwtRequestFilter = jwtRequestFilter;
-		// this.jwtUserDetailsService = jwtUserDetailsService;
+		this.jwtUserDetailsService = jwtUserDetailsService;
 	}
 	
     @Bean
