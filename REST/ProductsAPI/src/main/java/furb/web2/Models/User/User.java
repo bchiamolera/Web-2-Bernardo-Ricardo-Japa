@@ -17,14 +17,14 @@ uniqueConstraints = {
 public class User {
 
 	@Id
-    @Column
+	@Column(name="User_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column
+	@Column(nullable=false)
 	private String username;
 	
-	@Column
+	@Column(nullable=false)
 	@JsonIgnore
 	private String password;
 
