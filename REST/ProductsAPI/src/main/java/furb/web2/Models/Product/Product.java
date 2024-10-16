@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name="Product")
 public class Product {
 	@Id
-    @Column(name="Product_Id")
+    @Column(name = "Category_Id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	

@@ -17,7 +17,7 @@ uniqueConstraints = {
 public class User {
 
 	@Id
-	@Column(name="User_Id")
+	@Column(name = "User_Id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	

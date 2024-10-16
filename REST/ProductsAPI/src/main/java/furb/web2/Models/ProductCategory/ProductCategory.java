@@ -20,7 +20,7 @@ import jakarta.persistence.UniqueConstraint;
 
 public class ProductCategory {
 	@Id
-    @Column
+    @Column(name = "Product_Category_Id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	

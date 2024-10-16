@@ -15,7 +15,7 @@ import jakarta.persistence.UniqueConstraint;
 public class Role {
 	
 	@Id
-    @Column
+    @Column(name = "Role_Id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 

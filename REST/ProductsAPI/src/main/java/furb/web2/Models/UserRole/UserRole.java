@@ -20,7 +20,7 @@ import jakarta.persistence.UniqueConstraint;
 public class UserRole {
 
     @Id
-    @Column
+    @Column(name = "User_Role_Id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
