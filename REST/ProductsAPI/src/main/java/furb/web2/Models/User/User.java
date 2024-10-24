@@ -1,12 +1,16 @@
 package furb.web2.Models.User;
 
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import furb.web2.Models.Order.Order;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
@@ -27,6 +31,9 @@ public class User {
 	@Column(nullable=false)
 	@JsonIgnore
 	private String password;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Order> orders;
 
 	public Long getUserId() {
         return id;
@@ -51,4 +58,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+	
 }

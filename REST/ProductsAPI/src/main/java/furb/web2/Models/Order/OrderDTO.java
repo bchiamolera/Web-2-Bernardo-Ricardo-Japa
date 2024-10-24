@@ -6,9 +6,16 @@ import furb.web2.Models.Item.ItemDTO;
 import furb.web2.Models.User.UserDTO;
 
 public class OrderDTO {
+	private long id;
 	private UserDTO user;
 	private List<ItemDTO> items;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public UserDTO getUser() {
 		return user;
 	}

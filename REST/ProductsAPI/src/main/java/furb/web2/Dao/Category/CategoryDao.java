@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import furb.web2.Models.Category.Category;
+import furb.web2.Models.Product.Product;
 
-public interface CategoryDao extends CrudRepository<Category, Integer> {
-	List<Category> findByNameContaining();
+public interface CategoryDao extends CrudRepository<Category, Long> {
+	List<Category> findByNameContaining(String name);
 }

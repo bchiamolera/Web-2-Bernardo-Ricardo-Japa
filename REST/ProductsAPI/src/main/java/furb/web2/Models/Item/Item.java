@@ -11,9 +11,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="Item")
+@Table(name="Item",
+	   uniqueConstraints = {
+		   @UniqueConstraint(name = "ITEM_UK", columnNames = { "Order_Id", "Product_Id" }) })
 public class Item {
 	@Id
     @Column(name = "Item_Id", nullable = false)
@@ -29,7 +32,7 @@ public class Item {
 	private Product product;
 	
 	@Column(nullable=false)
-	private String quantity;
+	private int quantity;
 
 	public long getItemId() {
 		return id;
@@ -55,11 +58,11 @@ public class Item {
 		this.product = product;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 }

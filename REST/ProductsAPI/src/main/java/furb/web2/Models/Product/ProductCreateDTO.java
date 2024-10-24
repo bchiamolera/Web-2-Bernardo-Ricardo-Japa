@@ -2,43 +2,36 @@ package furb.web2.Models.Product;
 
 import java.util.List;
 
-import furb.web2.Models.Category.CategoryDTO;
 
-public class ProductDTO {
+public class ProductCreateDTO {
 	private long id;
 	private String name;
 	private float price;
-	private List<CategoryDTO> categorias;
+	private List<Long> categoriasId;
 	
 	public long getId() {
 		return id;
 	}
-	
 	public void setId(long id) {
 		this.id = id;
 	}
-	
 	public String getName() {
 		return name;
 	}
-	
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	public float getPrice() {
 		return price;
 	}
-	
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	
-	public List<CategoryDTO> getCategorias() {
-		return categorias;
+	public List<Long> getCategoriasId() {
+		return categoriasId;
+	}
+	public void setCategoriasId(List<Long> categoriasId) {
+		this.categoriasId = categoriasId;
 	}
 	
-	public void setCategorias(List<CategoryDTO> categorias) {
-		this.categorias = categorias;
-	}
 }

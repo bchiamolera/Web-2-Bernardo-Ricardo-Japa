@@ -3,10 +3,17 @@ package furb.web2.Models.Item;
 import furb.web2.Models.Product.ProductDTO;
 
 public class ItemDTO {
+	private long id;
 	private ProductDTO product;
 	private int quantity;
 	private float totalPrice;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public ProductDTO getProduct() {
 		return product;
 	}

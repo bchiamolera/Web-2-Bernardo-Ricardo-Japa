@@ -1,6 +1,7 @@
 package furb.web2.Services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,6 +33,11 @@ public class JwtUserDetailsService implements UserDetailsService  {
 		}
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 				new ArrayList<>());
+	}
+	
+	public User getById(long id) {
+		Optional<User> user = userDao.findById(id);
+		return user.orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 	}
 	
 	public User save(UserDTO user) {

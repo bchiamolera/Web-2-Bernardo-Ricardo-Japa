@@ -1,10 +1,14 @@
 package furb.web2.Models.Category;
 
+import java.util.Set;
+
+import furb.web2.Models.ProductCategory.ProductCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +21,9 @@ public class Category {
 	
 	@Column(nullable=false)
 	private String categoryName;
+
+	@OneToMany(mappedBy = "category")
+	private Set<ProductCategory> productCategories;
 
 	public long getCategoryId() {
 		return id;
@@ -33,5 +40,12 @@ public class Category {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	
+		
+	public Set<ProductCategory> getProductCategories() {
+		return productCategories;
+	}
+
+	public void setProductCategories(Set<ProductCategory> productCategories) {
+		this.productCategories = productCategories;
+	}
 }

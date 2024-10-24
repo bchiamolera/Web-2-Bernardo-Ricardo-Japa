@@ -16,8 +16,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity
 @Table(name="Product_Category",
 	   uniqueConstraints = {
-		   @UniqueConstraint(name = "USER_ROLE_UK", columnNames = { "User_Id", "Role_Id" }) })
-
+		   @UniqueConstraint(name = "PRODUCT_CATEGORY_UK", columnNames = { "Product_Id", "Category_Id" }) })
 public class ProductCategory {
 	@Id
     @Column(name = "Product_Category_Id", nullable = false)
