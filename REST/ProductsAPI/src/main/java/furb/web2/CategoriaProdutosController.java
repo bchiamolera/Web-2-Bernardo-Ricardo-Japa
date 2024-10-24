@@ -1,9 +1,8 @@
-package furb.web2.controller;
+package furb.web2;
 
-import furb.web2.Categoria;
-import furb.web2.Produtos;
-import furb.web2.repository.CategoriaRepository;
-import furb.web2.repository.ProdutosRepository;
+
+import furb.web2.CategoriaProdutosRepository.CategoriaRepository;
+import furb.web2.CategoriaProdutosRepository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +41,7 @@ public class CategoriaProdutosController {
             produto.setPreco(produtoDetalhes.getPreco());
             return produtosRepository.save(produto);
         }
-        return null; // Aqui você pode adicionar um tratamento de erro
+        return null; 
     }
 
     @DeleteMapping("/produtos/{id}")
@@ -71,7 +70,7 @@ public class CategoriaProdutosController {
             categoria.setTipo(categoriaDetalhes.getTipo());
             return categoriaRepository.save(categoria);
         }
-        return null; // Aqui você pode adicionar um tratamento de erro
+        return null;
     }
 
     @DeleteMapping("/categorias/{id}")
@@ -92,7 +91,7 @@ public class CategoriaProdutosController {
             categoria.adicionarProduto(produto); // Associa o produto à categoria
             return categoriaRepository.save(categoria);
         }
-        return null; // Aqui você pode adicionar um tratamento de erro
+        return null;
     }
 
     // Remover associação de Produto e Categoria
@@ -107,6 +106,6 @@ public class CategoriaProdutosController {
             categoria.removerProduto(produto); // Remove o produto da categoria
             return categoriaRepository.save(categoria);
         }
-        return null; // Aqui você pode adicionar um tratamento de erro
+        return null;
     }
 }
