@@ -62,7 +62,7 @@ public class UserService implements UserDetailsService  {
 	@Transactional
 	public UserDTO create(RegisterDTO user) {
 		User newUser = new User();
-		Role role = roleDao.findByName("USER");
+		Role role = roleDao.findByName("ROLE_USER");
 		
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
