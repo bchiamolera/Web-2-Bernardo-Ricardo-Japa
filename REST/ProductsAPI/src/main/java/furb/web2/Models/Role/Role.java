@@ -5,36 +5,30 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Role",
-       uniqueConstraints = {
-    		   @UniqueConstraint(name = "ROLE_UK", columnNames = "Name") })
 public class Role {
-	
 	@Id
-    @Column(name = "Role_Id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roleId;
+    private Long id;
 
-    @Column
-    private String roleName;
+    @Column(unique = true)
+    private String name;
 
-    public Long getRoleId() {
-        return roleId;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getRoleName() {
-        return roleName;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+    
 }

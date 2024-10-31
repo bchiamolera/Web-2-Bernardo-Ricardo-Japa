@@ -7,46 +7,41 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import furb.web2.Config.JwtTokenUtil;
-import furb.web2.Models.Jwt.JwtRequest;
-import furb.web2.Models.Jwt.JwtResponse;
-import furb.web2.Models.User.UserDTO;
-import furb.web2.Services.JwtUserDetailsService;
+import furb.web2.Config.Jwt.JwtUtil;
+import furb.web2.Models.Auth.AuthRequest;
+import furb.web2.Models.Auth.AuthResponse;
+import furb.web2.Models.User.RegisterDTO;
+import furb.web2.Services.UserService;
 
 @RestController
-@CrossOrigin
 public class JwtAuthenticationController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+	private JwtUtil jwtTokenUtil;
 
 	@Autowired
-	private JwtUserDetailsService userDetailsService;
+	private UserService userDetailsService;
 
 	@PostMapping("/login")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+	public ResponseEntity<?> authenticate(@RequestBody AuthRequest authRequest) throws Exception {
 
-		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		authenticate(authRequest.getUsername(), authRequest.getPassword());
 
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());;
+		final String jwt = jwtTokenUtil.generateToken(userDetails.getUsername());
 
-		final String token = jwtTokenUtil.generateToken(userDetails);
-
-		return ResponseEntity.ok(new JwtResponse(token));
+		return ResponseEntity.ok(new AuthResponse(jwt));
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.save(user));
+	public ResponseEntity<?> saveUser(@RequestBody RegisterDTO user) throws Exception {
+		return ResponseEntity.ok(userDetailsService.create(user));
 	}
-
+	
 	private void authenticate(String username, String password) throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

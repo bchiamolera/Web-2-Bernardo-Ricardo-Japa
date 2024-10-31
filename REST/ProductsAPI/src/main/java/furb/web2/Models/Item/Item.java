@@ -1,68 +1,61 @@
 package furb.web2.Models.Item;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import furb.web2.Models.Order.Order;
 import furb.web2.Models.Product.Product;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="Item",
-	   uniqueConstraints = {
-		   @UniqueConstraint(name = "ITEM_UK", columnNames = { "Order_Id", "Product_Id" }) })
+@Table(name = "item",
+       uniqueConstraints = {
+           @UniqueConstraint(name = "ITEM_UK", columnNames = { "order_id", "product_id" }) })
 public class Item {
-	@Id
-    @Column(name = "Item_Id", nullable = false)
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Order_Id", nullable = false)
-	private Order order;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Product_Id", nullable = false)
-	private Product product;
-	
-	@Column(nullable=false)
-	private int quantity;
+    private long id;
 
-	public long getItemId() {
-		return id;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    @JsonBackReference
+    private Order order;
 
-	public void setItemId(long id) {
-		this.id = id;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-	public Order getOrder() {
-		return order;
-	}
+    @Column(nullable = false)
+    private int quantity;
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+    // Getters and Setters
+    public long getId() {
+        return id;
+    }
 
-	public Product getProduct() {
-		return product;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+    public Order getOrder() {
+        return order;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

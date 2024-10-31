@@ -1,70 +1,78 @@
 package furb.web2.Models.User;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import furb.web2.Models.Order.Order;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import furb.web2.Models.Role.Role;
+import jakarta.persistence.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name = "User",
-uniqueConstraints = {
-		   @UniqueConstraint(name = "USER_UK", columnNames = "Username") })
+@Table(name = "user", uniqueConstraints = {
+        @UniqueConstraint(name = "USER_UK", columnNames = "username") })
 public class User {
 
-	@Id
-	@Column(name = "User_Id", nullable = false)
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column(nullable=false)
-	private String username;
-	
-	@Column(nullable=false)
-	@JsonIgnore
-	private String password;
-	
-	@OneToMany(mappedBy="user")
-	private Set<Order> orders;
+    private long id;
 
-	public Long getUserId() {
+    @Column(nullable = false)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<Role>();
+    
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Order> orders;
+
+    // Getters and Setters
+    public long getId() {
         return id;
     }
 
-    public void setUserId(Long userId) {
+    public void setId(long userId) {
         this.id = userId;
     }
-	
-	public String getUsername() {
-		return username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public Set<Order> getOrders() {
-		return orders;
-	}
+        return orders;
+    }
 
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
-	
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 }

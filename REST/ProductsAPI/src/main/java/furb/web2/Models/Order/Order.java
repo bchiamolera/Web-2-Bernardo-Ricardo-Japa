@@ -1,51 +1,49 @@
 package furb.web2.Models.Order;
 
-import java.util.Set;
-
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import furb.web2.Models.Item.Item;
 import furb.web2.Models.User.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="Order")
+@Table(name = "orders")
 public class Order {
-	@Id
-    @Column(name = "Order_Id", nullable = false)
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "User_Id", nullable = false)
-	private User user;
-	
-	@OneToMany(mappedBy = "order")
-	private Set<Item> items;
-	
-	public long getOrderId() {
-		return id;
-	}
-	public void setOrderId(long id) {
-		this.id = id;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Set<Item> getItems() {
-		return items;
-	}
-	public void setItems(Set<Item> items) {
-		this.items = items;
-	}
+    private long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    private User user;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    private List<Item> items;
+
+    // Getters and Setters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }

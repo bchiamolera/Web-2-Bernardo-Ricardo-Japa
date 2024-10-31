@@ -1,63 +1,61 @@
 package furb.web2.Models.Product;
 
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import furb.web2.Models.Category.Category;
+import jakarta.persistence.*;
 
-import furb.web2.Models.ProductCategory.ProductCategory;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name="Product")
+@Table(name = "product")
 public class Product {
-	@Id
-    @Column(name = "Category_Id", nullable = false)
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column(nullable=false)
-	private String productName;
-	
-	@Column(nullable=false)
-	private double price;	
-	
-	@OneToMany(mappedBy = "product")
-	private Set<ProductCategory> productCategories;
+    private long id;
 
-	public long getProductId() {
-		return id;
-	}
+    @Column(name = "product_name", nullable = false)
+    private String productName;
 
-	public void setProductId(long id) {
-		this.id = id;
-	}
+    @Column(nullable = false)
+    private double price;
 
-	public String getProductName() {
-		return productName;
-	}
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "product_categories",
+               joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
+    private Set<Category> categories;
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+    // Getters and Setters
+    public long getId() {
+        return id;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	public Set<ProductCategory> getProductCategories() {
-		return this.productCategories;
-	}
-	
-	public void setProductCategories(Set<ProductCategory> productCategories) {
-		this.productCategories = productCategories;
-	}
-	
+    public String getName() {
+        return productName;
+    }
+
+    public void setName(String productName) {
+        this.productName = productName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 }

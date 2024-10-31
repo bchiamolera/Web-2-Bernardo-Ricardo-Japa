@@ -1,51 +1,47 @@
 package furb.web2.Models.Category;
 
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import furb.web2.Models.Product.Product;
+import jakarta.persistence.*;
 
-import furb.web2.Models.ProductCategory.ProductCategory;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name="Category")
+@Table(name = "category")
 public class Category {
-	@Id
-    @Column(name = "Category_Id", nullable = false)
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column(nullable=false)
-	private String categoryName;
+    private long id;
 
-	@OneToMany(mappedBy = "category")
-	private Set<ProductCategory> productCategories;
+    @Column(name = "category_name", nullable = false)
+    private String categoryName;
 
-	public long getCategoryId() {
-		return id;
-	}
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
+    private Set<Product> products;
 
-	public void setCategoryId(long id) {
-		this.id = id;
-	}
+    // Getters and Setters
+    public long getId() {
+        return id;
+    }
 
-	public String getCategoryName() {
-		return categoryName;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-		
-	public Set<ProductCategory> getProductCategories() {
-		return productCategories;
-	}
+    public String getName() {
+        return categoryName;
+    }
 
-	public void setProductCategories(Set<ProductCategory> productCategories) {
-		this.productCategories = productCategories;
-	}
+    public void setName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }

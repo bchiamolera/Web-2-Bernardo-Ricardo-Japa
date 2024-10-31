@@ -4,17 +4,10 @@ import java.util.List;
 
 
 public class ProductCreateDTO {
-	private long id;
 	private String name;
 	private float price;
-	private List<Long> categoriasId;
+	private List<Long> categoriesId;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -27,11 +20,11 @@ public class ProductCreateDTO {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public List<Long> getCategoriasId() {
-		return categoriasId;
+	public List<Long> getCategoriesId() {
+		return categoriesId;
 	}
-	public void setCategoriasId(List<Long> categoriasId) {
-		this.categoriasId = categoriasId;
+	public void setCategoriesId(List<Long> categoriesId) {
+		this.categoriesId = categoriesId;
 	}
 	
 }

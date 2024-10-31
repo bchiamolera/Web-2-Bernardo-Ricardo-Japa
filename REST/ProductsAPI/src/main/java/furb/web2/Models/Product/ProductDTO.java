@@ -7,17 +7,17 @@ import furb.web2.Models.Category.CategoryDTO;
 public class ProductDTO {
 	private long id;
 	private String name;
-	private float price;
+	private double price;
 	private List<CategoryDTO> categorias;
 	
 	public long getId() {
 		return id;
 	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -26,11 +26,11 @@ public class ProductDTO {
 		this.name = name;
 	}
 	
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 	
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
