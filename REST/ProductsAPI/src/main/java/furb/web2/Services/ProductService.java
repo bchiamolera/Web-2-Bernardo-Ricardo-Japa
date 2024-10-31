@@ -84,7 +84,7 @@ public class ProductService {
 
     @Transactional
     public ProductDTO update(long productId, ProductCreateDTO productDto) {
-        Product product = ProductMapper.toEntity(getById(productId));
+    	Product product = productDao.findById(productId).orElseThrow(() -> new ApiException("Product not found with id: " + productId, HttpStatus.NOT_FOUND));
         if (productDto.getName() != null) {
             product.setName(productDto.getName());
         }
@@ -97,7 +97,7 @@ public class ProductService {
     
     @Transactional
     public ProductDTO addCategoryToProduct(long productId, long categoryId) {
-        Product product = ProductMapper.toEntity(getById(productId));
+    	Product product = productDao.findById(productId).orElseThrow(() -> new ApiException("Product not found with id: " + productId, HttpStatus.NOT_FOUND));
         Category category = categoryDao.findById(categoryId).orElseThrow(() -> new ApiException("Category not found with id: " + categoryId, HttpStatus.NOT_FOUND));
         product.getCategories().add(category);
         return ProductMapper.toDTO(productDao.save(product));

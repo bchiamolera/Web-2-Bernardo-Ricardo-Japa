@@ -73,7 +73,7 @@ public class UserService implements UserDetailsService  {
 	
 	@Transactional
 	public UserDTO update(long userId, RegisterDTO userDto) {
-		User user = UserMapper.toEntity(getById(userId));
+		User user = userDao.findById(userId).orElseThrow(() -> new ApiException("User not found with id: " + userId, HttpStatus.NOT_FOUND));
 		user.setUsername(userDto.getUsername());
 		user.setPassword(bcryptEncoder.encode(userDto.getPassword()));
 		user = userDao.save(user);
