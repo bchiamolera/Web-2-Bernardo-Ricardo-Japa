@@ -40,8 +40,7 @@ public class OrderService {
     }
 
     public OrderDTO getById(long id) {
-        Order order = orderDao.findById(id)
-                .orElseThrow(() -> new ApiException("Order not found with id: " + id, HttpStatus.NOT_FOUND));
+        Order order = orderDao.findById(id).orElseThrow(() -> new ApiException("Order not found with id: " + id, HttpStatus.NOT_FOUND));
         return OrderMapper.toDTO(order);
     }
 
@@ -57,7 +56,7 @@ public class OrderService {
 
     @Transactional
     public OrderDTO removeItem(long orderId, long itemId) {
-        Order order = OrderMapper.toEntity(getById(orderId));
+        Order order = orderDao.findById(orderId).orElseThrow(() -> new ApiException("Order not found with id: " + orderId, HttpStatus.NOT_FOUND));
         Item item = itemDao.findById(itemId)
                 .orElseThrow(() -> new ApiException("Item not found with id: " + itemId, HttpStatus.NOT_FOUND));
 

@@ -39,8 +39,7 @@ public class CategoryService {
     }
 
     public CategoryDTO getById(long id) {
-        Category category = categoryDao.findById(id)
-                .orElseThrow(() -> new ApiException("Category not found with id: " + id, HttpStatus.NOT_FOUND));
+        Category category = categoryDao.findById(id).orElseThrow(() -> new ApiException("Category not found with id: " + id, HttpStatus.NOT_FOUND));
         return CategoryMapper.toDTO(category);
     }
 
@@ -82,7 +81,7 @@ public class CategoryService {
 
     @Transactional
     public CategoryDTO update(long categoryId, CategoryDTO categoryDto) {
-        Category category = CategoryMapper.toEntity(getById(categoryId));
+        Category category = categoryDao.findById(categoryId).orElseThrow(() -> new ApiException("Category not found with id: " + categoryId, HttpStatus.NOT_FOUND));
         
         if (categoryDto.getName() != null) {
             category.setName(categoryDto.getName());

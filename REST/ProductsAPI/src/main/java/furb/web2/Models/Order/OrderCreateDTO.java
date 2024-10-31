@@ -1,10 +1,5 @@
 package furb.web2.Models.Order;
 
-import java.util.List;
-
-import furb.web2.Models.Item.ItemDTO;
-import furb.web2.Models.User.UserDTO;
-
 public class OrderCreateDTO {
 	private long id;
 	private long userId;
